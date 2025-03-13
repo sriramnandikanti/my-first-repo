@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Nombre de tu aplicación</string>
+    <string name="hello">Hola</string>
+</resources>
