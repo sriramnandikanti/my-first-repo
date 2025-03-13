@@ -18,12 +18,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-
-        /*ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }*/
         val languageSpinner: Spinner = findViewById(R.id.languageSpinner)
         val languages = arrayOf("Select Language", "English", "Spanish", "Portuguese")
 
@@ -34,27 +28,11 @@ class MainActivity : AppCompatActivity() {
         languageSpinner.adapter = adapter
         languageSpinner.setSelection(0)
 
-        // Create an ArrayAdapter using the string array and a default spinner layout
-       /* ArrayAdapter.createFromResource(
-            this,
-            R.array.languages_array,  // Array defined in strings.xml for Spinner options
-            android.R.layout.simple_spinner_item
-        ).also { adapter ->*/
-            // Specify the layout to use when the list of choices appears
-//            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            // Apply the adapter to the spinner
-//            languageSpinner.adapter = adapter
-//        }
-
         // Handle language selection
         languageSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: android.view.View?, position: Int, id: Long) {
                 val selectedLanguage = parent.getItemAtPosition(position).toString()
-                /*when (selectedLanguage) {
-                    "English" -> setLocale("en")
-                    "Spanish" -> setLocale("es")
-                    "Portuguese" -> setLocale("pt")
-                }*/
+
                 if (selectedLanguage.equals("English")) {
                     setLocale(this@MainActivity, "en")
                     finish()
@@ -79,7 +57,6 @@ class MainActivity : AppCompatActivity() {
         val resources: Resources = activity.resources
         val config: Configuration = resources.configuration
         config.locale = locale
-//        baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
         resources.updateConfiguration(config, resources.displayMetrics)
         recreate() // Restart activity to apply new locale
     }
